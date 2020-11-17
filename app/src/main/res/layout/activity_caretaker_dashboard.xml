@@ -12,7 +12,6 @@
         android:id="@+id/textView4"
         android:layout_width="91dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/null"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -28,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="50dp"
-        android:layout_toRightOf="1"
         android:background="#f1f1f1">
 
         <TableRow>

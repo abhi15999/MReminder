@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/submenu1_title_patient">
+        <menu>
+            <item
+                android:id="@+id/home_patient"
+                android:icon="@drawable/ic_baseline_people_24"
+                android:title="@string/home_title_patient" />
+            <item
+                android:id="@+id/reports_patient"
+                android:icon="@drawable/ic_baseline_grading_24"
+                android:title="@string/report_title_patient" />
+        </menu>
+    </item>
+    <item android:title="@string/submenu2_title_patient">
+        <menu>
+            <item
+                android:id="@+id/profile_patient"
+                android:icon="@drawable/ic_baseline_person_outline_24"
+                android:title="@string/home_title_patient" />
+            <item
+                android:id="@+id/logout_btn_patient"
+                android:icon="@drawable/ic_baseline_login_24"
+                android:title="@string/Logout_btn" />
+        </menu>
+    </item>
+</menu>
+

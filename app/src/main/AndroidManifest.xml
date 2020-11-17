@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PatientDashboard"></activity>
+        <activity
+            android:name=".PatientDashboard"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CaretakerDashboard" />
         <activity android:name=".DoctorDashboard" />
         <activity android:name=".LoginActivity" />
@@ -20,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText emailId,password,category;
     Button btnsignUp;
     TextView TvalreadyRegistered;
@@ -25,14 +28,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
+        final Spinner category = (Spinner) findViewById(R.id.spinner_main);
         mFirebaseAuth = FirebaseAuth.getInstance();
         emailId=findViewById(R.id.emailId);
         password=findViewById(R.id.password);
-        category=findViewById(R.id.category);
         btnsignUp = findViewById(R.id.btnsignUp);
         TvalreadyRegistered = findViewById(R.id.TvalreadyRegistered);
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Job_Array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category.setOnItemSelectedListener(this);
+        category.setAdapter(adapter);
+
         btnsignUp.setOnClickListener(new View.OnClickListener() {
 
 
@@ -40,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = emailId.getText().toString();
                 String pass = password.getText().toString();
-                String cat = category.getText().toString().toLowerCase();
+                String cat = category.getSelectedItem().toString().toLowerCase();
                 if(email.isEmpty())
                 {
 //                    Toast.makeText(MainActivity.this, "Fill Email!", Toast.LENGTH_SHORT).show();
@@ -54,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if(cat.isEmpty())
                 {
 //                    Toast.makeText(MainActivity.this, "Fill Category as per the norms", Toast.LENGTH_SHORT).show();
-                    category.setError("Please Fill Your Category");
-                    category.requestFocus();
+//                    category.setError("Please Fill Your Category");
+//                    category.requestFocus();
                 }else if(!(email.isEmpty() && pass.isEmpty() && cat.isEmpty())) {
                     mFirebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -82,6 +93,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

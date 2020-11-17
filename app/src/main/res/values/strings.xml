@@ -1,5 +1,29 @@
 <resources>
     <string name="app_name">MReminder</string>
     <string name="commit_name">Commit By Divyam</string>
+    <string name="cd_logo">Logo</string>
+    <string name="hint_email">Email ID</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_DPC">Doctor, P</string>
+    <string name="Login_btn">Login</string>
+    <string name="SignUp_btn">Sign Up</string>
+    <string name="Logout_btn">Logout</string>
+<!--    string[name] -->
+    <string name="Signup_Prompt">Not registered? SignUp!</string>
+    <string name="Login_Prompt">Not registered? Login!</string>
+    <string-array name="Job_Array">
+        <item>Patient</item>
+        <item>Caretaker</item>
+        <item>Doctor</item>
+    </string-array>
+
+    <string name="drawer_header">Drawer Header</string>
+    <string name="submenu1_title_patient">General</string>
+    <string name="submenu2_title_patient">Account</string>
+    <string name="home_title_patient">Home</string>
+    <string name="report_title_patient">Reports</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
 
 </resources>

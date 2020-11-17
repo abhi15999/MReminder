@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,29 +20,36 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     EditText emailId,password,category;
     Button btnsignIn;
     TextView TvnotRegistered;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
+
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         emailId=findViewById(R.id.emailId);
         password=findViewById(R.id.password);
-        category=findViewById(R.id.category);
         btnsignIn = findViewById(R.id.btnsignIn);
         TvnotRegistered = findViewById(R.id.TvnotRegistered);
+        final Spinner category = (Spinner) findViewById(R.id.spinner_login);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Job_Array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category.setOnItemSelectedListener(this);
+        category.setAdapter(adapter);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-                String cat = category.getText().toString().toLowerCase();
+                String cat = category.getSelectedItem().toString().toLowerCase();
                 if(mFirebaseUser!=null){
                     Toast.makeText(LoginActivity.this,"You are logged in!",Toast.LENGTH_SHORT).show();
                     if(cat.equals("doctor")){ Intent i = new Intent(LoginActivity.this, DoctorDashboard.class);
@@ -62,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = emailId.getText().toString();
                 String pass = password.getText().toString();
-                String cat = category.getText().toString().toLowerCase();
+                String cat = category.getSelectedItem().toString().toLowerCase();
                 if(email.isEmpty())
                 {
 //                    Toast.makeText(LoginActivity.this,email,Toast.LENGTH_SHORT).show();
@@ -77,14 +86,14 @@ public class LoginActivity extends AppCompatActivity {
                 } else if(cat.isEmpty())
                 {
 //                    Toast.makeText(MainActivity.this, "Fill Category as per the norms", Toast.LENGTH_SHORT).show();
-                    category.setError("Please Fill Your Category");
-                    category.requestFocus();
+//                    category.setError("Please Fill Your Category");
+//                    category.requestFocus();
                 } else if(!(email.isEmpty() && pass.isEmpty() && cat.isEmpty())) {
 
                         mFirebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                String cat = category.getText().toString().toLowerCase();
+                                String cat = category.getSelectedItem().toString().toLowerCase();
                                 if(!task.isSuccessful()){
 
                                     Toast.makeText(LoginActivity.this, "Login Error Occured!", Toast.LENGTH_SHORT).show();
@@ -115,5 +124,16 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
