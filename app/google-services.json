@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "689894512563",
+    "firebase_url": "https://medical-app-d47b3.firebaseio.com",
+    "project_id": "medical-app-d47b3",
+    "storage_bucket": "medical-app-d47b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689894512563:android:17e1b768c059b3bef1ddc6",
+        "android_client_info": {
+          "package_name": "com.example.mreminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689894512563-bjsgigkurucbi7hbggc2s72i7787bpq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCehqF-hO1gFkVdjn3xM485atdJyUPt1FU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689894512563-bjsgigkurucbi7hbggc2s72i7787bpq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
