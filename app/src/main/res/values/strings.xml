@@ -10,7 +10,7 @@
     <string name="Logout_btn">Logout</string>
 <!--    string[name] -->
     <string name="Signup_Prompt">Not registered? SignUp!</string>
-    <string name="Login_Prompt">Not registered? Login!</string>
+    <string name="Login_Prompt">Already registered? Login!</string>
     <string-array name="Job_Array">
         <item>Patient</item>
         <item>Caretaker</item>
@@ -30,5 +30,8 @@
 
     <string name="home_title_doctor">Your Patients</string>
     <string name="alert_title_doctor">Patient Alerts</string>
+
+    <string name="home_title_caretaker">Patients</string>
+    <string name="alert_title_caretaker">Alerts</string>
 
 </resources>

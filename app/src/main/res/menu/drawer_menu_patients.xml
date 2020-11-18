@@ -4,7 +4,7 @@
         <menu>
             <item
                 android:id="@+id/home_patient"
-                android:icon="@drawable/ic_baseline_people_24"
+                android:icon="@drawable/ic_baseline_medical_services_24"
                 android:title="@string/home_title_patient" />
             <item
                 android:id="@+id/reports_patient"
