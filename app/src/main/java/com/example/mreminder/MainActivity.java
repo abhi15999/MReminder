@@ -16,15 +16,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.Console;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    EditText emailId,password,category;
+    EditText emailId,password;
     Button btnsignUp;
     TextView TvalreadyRegistered;
     FirebaseAuth mFirebaseAuth;
+    FirebaseFirestore fStore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         final Spinner category = findViewById(R.id.spinner_main);
         mFirebaseAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
         emailId=findViewById(R.id.emailId);
         password=findViewById(R.id.password);
         btnsignUp = findViewById(R.id.btnsignUp);
@@ -45,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         category.setAdapter(adapter);
 
         btnsignUp.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 String email = emailId.getText().toString();
@@ -59,23 +68,39 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     emailId.requestFocus();
                 } else if(pass.isEmpty())
                 {
-//                    Toast.makeText(MainActivity.this, "Fill Password", Toast.LENGTH_SHORT).show();
                     password.setError("Please Fill Your Password");
                     password.requestFocus();
-                } else if(cat.isEmpty())
-                {
-//                    Toast.makeText(MainActivity.this, "Fill Category as per the norms", Toast.LENGTH_SHORT).show();
-//                    category.setError("Please Fill Your Category");
-//                    category.requestFocus();
+                } else if(cat.isEmpty()){
+
                 }else if(!(email.isEmpty() && pass.isEmpty() && cat.isEmpty())) {
                     mFirebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-//                            String cat = category.getText().toString().toLowerCase();
+
                             if(!(task.isSuccessful())){
-//                                Log.w("signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Error Occured!", Toast.LENGTH_SHORT).show();
                             } else {
+
+                                String uId= mFirebaseAuth.getCurrentUser().getUid();
+                                String cat = category.getSelectedItem().toString().toLowerCase();
+                                Map<String,Object>user = new HashMap<>();
+                                user.put("category",cat);
+                                fStore.collection("users").document(uId)
+                                        .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    String uId= mFirebaseAuth.getCurrentUser().getUid();
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("TAG","Stored Succesfully for"+uId);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w("TAG", "Error writing document", e);
+                                    }
+                                });
+                                Toast.makeText(MainActivity.this,uId,Toast.LENGTH_SHORT).show();
+
+//
                                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                                 intent.putExtra("CATEGORY", cat);
                                 startActivity(intent);

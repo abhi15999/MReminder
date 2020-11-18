@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -69,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
 
         btnsignIn.setOnClickListener(new View.OnClickListener() {
 
+//            @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onClick(View v) {
                 String email = emailId.getText().toString();
