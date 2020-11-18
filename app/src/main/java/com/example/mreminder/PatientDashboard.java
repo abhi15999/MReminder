@@ -48,19 +48,15 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        switch (id) {
-            case R.id.home_patient:
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.reports_patient:
-                Toast.makeText(this, "Patient Reports", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.profile_patient:
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.logout_btn_patient:
-                logOut();
-                return true;
+        if (id == R.id.home_patient) {
+            Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.reports_patient) {
+            Toast.makeText(this, "Patient Reports", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.profile_patient) {
+            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.logout_btn_patient) {
+            logOut();
+            return true;
         }
 
 

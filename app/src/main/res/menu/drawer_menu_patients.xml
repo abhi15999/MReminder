@@ -17,7 +17,7 @@
             <item
                 android:id="@+id/profile_patient"
                 android:icon="@drawable/ic_baseline_person_outline_24"
-                android:title="@string/home_title_patient" />
+                android:title="@string/settings_title" />
             <item
                 android:id="@+id/logout_btn_patient"
                 android:icon="@drawable/ic_baseline_login_24"
