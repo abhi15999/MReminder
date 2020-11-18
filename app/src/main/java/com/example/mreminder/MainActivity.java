@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         setContentView(R.layout.activity_main);
 
-        final Spinner category = (Spinner) findViewById(R.id.spinner_main);
+        final Spinner category = findViewById(R.id.spinner_main);
         mFirebaseAuth = FirebaseAuth.getInstance();
         emailId=findViewById(R.id.emailId);
         password=findViewById(R.id.password);
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 String email = emailId.getText().toString();
                 String pass = password.getText().toString();
-                String cat = category.getSelectedItem().toString().toLowerCase();
+                final String cat = category.getSelectedItem().toString().toLowerCase();
                 if(email.isEmpty())
                 {
 //                    Toast.makeText(MainActivity.this, "Fill Email!", Toast.LENGTH_SHORT).show();
@@ -76,7 +76,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //                                Log.w("signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Error Occured!", Toast.LENGTH_SHORT).show();
                             } else {
-                                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                                intent.putExtra("CATEGORY", cat);
+                                startActivity(intent);
                             }
                         }
                     });

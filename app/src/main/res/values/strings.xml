@@ -18,12 +18,17 @@
     </string-array>
 
     <string name="drawer_header">Drawer Header</string>
-    <string name="submenu1_title_patient">General</string>
-    <string name="submenu2_title_patient">Account</string>
+
     <string name="home_title_patient">Home</string>
     <string name="report_title_patient">Reports</string>
+
+    <string name="submenu1_title">General</string>
+    <string name="submenu2_title">Account</string>
+    <string name="settings_title">Settings</string>
     <string name="open">open</string>
     <string name="close">close</string>
 
+    <string name="home_title_doctor">Your Patients</string>
+    <string name="alert_title_doctor">Patient Alerts</string>
 
 </resources>

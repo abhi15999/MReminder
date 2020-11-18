@@ -13,7 +13,7 @@
             android:name=".PatientDashboard"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CaretakerDashboard" />
-        <activity android:name=".DoctorDashboard" />
+        <activity android:name=".DoctorDashboard" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

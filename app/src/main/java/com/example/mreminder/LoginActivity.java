@@ -32,13 +32,15 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
 
         setContentView(R.layout.activity_login);
 
+        final Intent intent = getIntent();
+        final String message = intent.getStringExtra("CATEGORY");
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         emailId=findViewById(R.id.emailId);
         password=findViewById(R.id.password);
         btnsignIn = findViewById(R.id.btnsignIn);
         TvnotRegistered = findViewById(R.id.TvnotRegistered);
-        final Spinner category = (Spinner) findViewById(R.id.spinner_login);
+        final Spinner category = findViewById(R.id.spinner_login);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Job_Array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -71,7 +73,15 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View v) {
                 String email = emailId.getText().toString();
                 String pass = password.getText().toString();
-                String cat = category.getSelectedItem().toString().toLowerCase();
+                final String cat;
+                if(message!=null)
+                {
+                    cat = message.toLowerCase();
+                }
+                else
+                {
+                    cat = category.getSelectedItem().toString().toLowerCase();
+                }
                 if(email.isEmpty())
                 {
 //                    Toast.makeText(LoginActivity.this,email,Toast.LENGTH_SHORT).show();
@@ -93,7 +103,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                         mFirebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                String cat = category.getSelectedItem().toString().toLowerCase();
+//                                String cat = category.getSelectedItem().toString().toLowerCase();
                                 if(!task.isSuccessful()){
 
                                     Toast.makeText(LoginActivity.this, "Login Error Occured!", Toast.LENGTH_SHORT).show();

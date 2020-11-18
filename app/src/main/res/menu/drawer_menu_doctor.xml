@@ -3,26 +3,25 @@
     <item android:title="@string/submenu1_title">
         <menu>
             <item
-                android:id="@+id/home_patient"
+                android:id="@+id/home_doctor"
                 android:icon="@drawable/ic_baseline_people_24"
-                android:title="@string/home_title_patient" />
+                android:title="@string/home_title_doctor" />
             <item
-                android:id="@+id/reports_patient"
+                android:id="@+id/alerts_doctor"
                 android:icon="@drawable/ic_baseline_grading_24"
-                android:title="@string/report_title_patient" />
+                android:title="@string/alert_title_doctor" />
         </menu>
     </item>
     <item android:title="@string/submenu2_title">
         <menu>
             <item
-                android:id="@+id/profile_patient"
+                android:id="@+id/profile_doctor"
                 android:icon="@drawable/ic_baseline_person_outline_24"
                 android:title="@string/settings_title" />
             <item
-                android:id="@+id/logout_btn_patient"
+                android:id="@+id/logout_btn_doctor"
                 android:icon="@drawable/ic_baseline_login_24"
                 android:title="@string/Logout_btn" />
         </menu>
     </item>
 </menu>
-
