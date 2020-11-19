@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView"
@@ -26,28 +26,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="52dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        android:autofillHints=""/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailId"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/emailId" />
 
     <Button
         android:id="@+id/btnsignIn"
@@ -55,11 +55,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/Login_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_login" />
+        app:layout_constraintTop_toTopOf="@id/password"
+        app:layout_constraintVertical_bias="0.229" />
 
     <TextView
         android:id="@+id/TvnotRegistered"
@@ -73,14 +76,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnsignIn" />
-
-    <Spinner
-        android:id="@+id/spinner_login"
-        android:layout_width="224dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

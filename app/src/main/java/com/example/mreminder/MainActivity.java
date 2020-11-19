@@ -98,11 +98,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                         Log.w("TAG", "Error writing document", e);
                                     }
                                 });
-                                Toast.makeText(MainActivity.this,uId,Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(MainActivity.this,uId,Toast.LENGTH_SHORT).show();
 
 //
                                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                                intent.putExtra("CATEGORY", cat);
+//                                intent.putExtra("CATEGORY", cat);
                                 startActivity(intent);
                             }
                         }
