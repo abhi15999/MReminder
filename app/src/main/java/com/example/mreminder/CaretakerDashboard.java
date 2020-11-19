@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +25,8 @@ public class CaretakerDashboard extends AppCompatActivity implements NavigationV
     NavigationView navigationView;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,12 @@ public class CaretakerDashboard extends AppCompatActivity implements NavigationV
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
+
+        // Load Home Fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container_fragment_caretaker, new HomeFragmentCaretaker());
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -49,6 +59,10 @@ public class CaretakerDashboard extends AppCompatActivity implements NavigationV
         Log.i("I am here", String.valueOf(id));
 
         if (id == R.id.home_caretaker) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment_caretaker, new HomeFragmentCaretaker());
+            fragmentTransaction.commit();
             Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.alert_caretaker) {
             Toast.makeText(this, "Alerts", Toast.LENGTH_SHORT).show();

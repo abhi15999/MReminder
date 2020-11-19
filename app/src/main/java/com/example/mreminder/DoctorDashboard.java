@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +27,8 @@ public class DoctorDashboard extends AppCompatActivity implements NavigationView
     NavigationView navigationView;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,12 @@ public class DoctorDashboard extends AppCompatActivity implements NavigationView
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
+
+        // Load Home Fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container_fragment_doctor, new HomeFragmentDoctor());
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -50,6 +60,10 @@ public class DoctorDashboard extends AppCompatActivity implements NavigationView
         Log.i("I am here", String.valueOf(id));
 
         if (id == R.id.home_doctor) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment_doctor, new HomeFragmentDoctor());
+            fragmentTransaction.commit();
             Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.alerts_doctor) {
             Toast.makeText(this, "Alerts", Toast.LENGTH_SHORT).show();
