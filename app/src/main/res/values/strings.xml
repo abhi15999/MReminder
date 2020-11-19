@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MReminder</string>
+    <string name="default_btn">Button</string>
     <string name="commit_name">Commit By Divyam</string>
     <string name="cd_logo">Logo</string>
     <string name="hint_email">Email ID</string>
@@ -8,7 +9,7 @@
     <string name="Login_btn">Login</string>
     <string name="SignUp_btn">Sign Up</string>
     <string name="Logout_btn">Logout</string>
-<!--    string[name] -->
+    <!--    string[name] -->
     <string name="Signup_Prompt">Not registered? SignUp!</string>
     <string name="Login_Prompt">Already registered? Login!</string>
     <string-array name="Job_Array">
@@ -33,5 +34,15 @@
 
     <string name="home_title_caretaker">Patients</string>
     <string name="alert_title_caretaker">Alerts</string>
+
+    <string name="hfp_welcome">Welcome Patient</string>
+
+    <string-array name="Medicines">
+        <item>Paracetamol</item>
+        <item>Crocin</item>
+        <item>Lycobax</item>
+        <item>Betadine</item>
+        <item>Silverex</item>
+    </string-array>
 
 </resources>

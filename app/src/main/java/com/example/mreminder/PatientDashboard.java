@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +28,8 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
     NavigationView navigationView;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,11 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
 
+        // Load Home Fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container_fragment_patient, new HomeFragmentPatient());
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -49,8 +59,16 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         int id = item.getItemId();
 
         if (id == R.id.home_patient) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment_patient, new HomeFragmentPatient());
+            fragmentTransaction.commit();
             Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.reports_patient) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment_patient, new ReportFragmentPatient());
+            fragmentTransaction.commit();
             Toast.makeText(this, "Patient Reports", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.profile_patient) {
             Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
